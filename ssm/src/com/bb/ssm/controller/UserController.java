@@ -24,12 +24,18 @@ public class UserController {
 	public String login(String username,String password,Model model,HttpServletRequest request) {
 		User user = userService.login(username, password);
 		if(user!=null) {
-			// 把user存入session中
+			// 鎶妘ser瀛樺叆session涓�
 			request.getSession().setAttribute("USER_SESSION", user);
 			return "redirect:/user/list.do";
 		}
-		model.addAttribute("errorMsg", "用户名或者密码错误");
+		model.addAttribute("errorMsg", "鐢ㄦ埛鍚嶆垨鑰呭瘑鐮侀敊璇�");
 		return "forward:/login.jsp";
+	}
+	
+	
+	@RequestMapping("/insert")
+	public String insert() {
+		return "redirect:/user/list.do";
 	}
 	
 	@RequestMapping("/list")
